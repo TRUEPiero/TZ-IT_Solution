@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+model Profile {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+
+  social       String[]
+  achievements String[]
+
+  skills     ProfileSkill[]
+  projects   Project[]
+  experiense Experiense[]
+
+  @@map("profile")
+}
+
+model Project {
+  id           Int      @id @default(autoincrement())
+  title        String
+  link         String
+  technologies String[]
+
+  profileId Int     @map("profile_id")
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("project")
+}
+
+model Experiense {
+  id Int @id @default(autoincrement())
+
+  companyId Int     @map("company_id")
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  position         String
+  responsibilities String
+
+  startDate DateTime
+  endDate   DateTime?
+
+  profileId Int     @map("profile_id")
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("experiense")
+}
+
+model Skill {
+  id    Int    @id @default(autoincrement())
+  title String @unique
+
+  profiles ProfileSkill[]
+
+  @@map("skill")
+}
+
+model Company {
+  id Int @id @default(autoincrement())
+
+  title String
+
+  experiense Experiense[]
+
+  @@map("company")
+}
+
+model ProfileSkill {
+  id Int @id @default(autoincrement())
+
+  profileId Int     @map("profile_id")
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  skillId Int   @map("skill_id")
+  skill   Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  level SkillLevel
+
+  @@unique([profileId, skillId])
+  @@map("profile_skill")
+}
