@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
 }
 
 enum SkillLevel {
@@ -24,8 +24,8 @@ model Profile {
   name        String
   description String
 
-  links       String[]
-  achievements String[]
+  links       String
+  achievements String
 
   skills     ProfileSkill[]
   projects   Project[]
@@ -38,7 +38,7 @@ model Project {
   id           Int      @id @default(autoincrement())
   title        String
   link         String
-  technologies String[]
+  technologies String
 
   profileId Int     @map("profile_id")
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
