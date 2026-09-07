@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-
-import { ProfileResolver } from './profile.resolver.js';
-import { ProfileRepository } from './repository.js';
-import { ProfileService } from './service.js';
+import { ExperienceResolver } from '../experiense/experiense.resolver.js';
 
 @Module({
     imports: [
@@ -14,12 +11,10 @@ import { ProfileService } from './service.js';
         }),
     ],
     providers: [
-        ProfileResolver,
-        ProfileRepository,
-        ProfileService,
+        ExperienceResolver
     ]
 })
 
-export class ProfileModule {}
+export class ExperienceModule {}
 
 

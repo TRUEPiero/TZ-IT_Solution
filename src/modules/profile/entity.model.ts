@@ -3,11 +3,9 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Skill } from "../skill/skill.model.js";
 import { Project } from "../project/project.model.js";
 import { Experience } from "../experiense/experience.model.js";
-import { formatDate } from "../../lib/formatter.js";
 
 import type { EntityParams } from "./types.js";
 import type { ProfileSkill } from "../skill/types.js";
-import type { ProfileExperience } from "../experiense/types.js";
 
 @ObjectType()
 export class Profile {
@@ -41,29 +39,8 @@ export class Profile {
         this.description = params.description;
         this.links = params.links;
         this.achievements = params.achievements;
-        this.skills = this.prepareSkills(params.skills);
-        this.experience = this.prepareExperience(params.experience);
+        this.skills = params.skills as any;
+        this.experience = params.experience as any;
         this.projects = params.projects;
-    }
-
-    private prepareSkills (skills: ProfileSkill[]) {
-        return skills.map(pSkill => {
-            return {
-                id: pSkill.id,
-                title: pSkill.skill.title,
-                level: pSkill.level
-            }
-        })
-    }
-
-    private prepareExperience (experience: ProfileExperience[]) {
-        return experience.map(exp => {
-            return {
-                id: exp.id,
-                company: exp.company.title,
-                period: `${formatDate(exp.startDate)} - ${exp.endDate ? formatDate(exp.endDate) : "по текущ."}`,
-                position: exp.position
-            }
-        })
     }
 }
