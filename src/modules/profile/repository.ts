@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
+
 import db from "../../lib/prisma.js";
-import { Profile } from "./entity.js";
+import { Profile } from "./entity.model.js";
 
 @Injectable()
 export class ProfileRepository {
@@ -23,7 +24,7 @@ export class ProfileRepository {
                 },
             }
         })        
-        if(!res) return  false;
+        if(!res) return null;
         
         return new Profile(res);
     }

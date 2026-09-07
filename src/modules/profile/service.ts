@@ -12,7 +12,6 @@ export class ProfileService {
         const profile = await this.repo.getByID(1);
         if(!profile) throw new NotFoundError('PROFILE');
 
-        console.log({skills: profile.experience})
         return profile;
     }
 

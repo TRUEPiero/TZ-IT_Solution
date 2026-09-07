@@ -2,9 +2,12 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 
 import { Skill } from "../skill/skill.model.js";
 import { Project } from "../project/project.model.js";
-import { Experience } from "../experiense/experiense.model.js";
-import  type{ EntityParams } from "./types.js";
+import { Experience } from "../experiense/experience.model.js";
 import { formatDate } from "../../lib/formatter.js";
+
+import type { EntityParams } from "./types.js";
+import type { ProfileSkill } from "../skill/types.js";
+import type { ProfileExperience } from "../experiense/types.js";
 
 @ObjectType()
 export class Profile {
@@ -43,7 +46,7 @@ export class Profile {
         this.projects = params.projects;
     }
 
-    private prepareSkills (skills: any[]) {
+    private prepareSkills (skills: ProfileSkill[]) {
         return skills.map(pSkill => {
             return {
                 id: pSkill.id,
@@ -53,7 +56,7 @@ export class Profile {
         })
     }
 
-    private prepareExperience (experience: any[]) {
+    private prepareExperience (experience: ProfileExperience[]) {
         return experience.map(exp => {
             return {
                 id: exp.id,

@@ -1,5 +1,5 @@
 import { Query, Resolver } from '@nestjs/graphql';
-import { Profile } from './entity.js';
+import { Profile } from './entity.model.js';
 import { ProfileService } from './service.js';
 
 @Resolver(() => Profile)
