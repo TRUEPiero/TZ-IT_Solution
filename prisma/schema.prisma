@@ -24,12 +24,12 @@ model Profile {
   name        String
   description String
 
-  social       String[]
+  links       String[]
   achievements String[]
 
   skills     ProfileSkill[]
   projects   Project[]
-  experiense Experiense[]
+  experience Experience[]
 
   @@map("profile")
 }
@@ -46,7 +46,7 @@ model Project {
   @@map("project")
 }
 
-model Experiense {
+model Experience {
   id Int @id @default(autoincrement())
 
   companyId Int     @map("company_id")
@@ -78,7 +78,7 @@ model Company {
 
   title String
 
-  experiense Experiense[]
+  experiense Experience[]
 
   @@map("company")
 }

@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ProfileResolver } from './profile.resolver.js';
+import { ProfileRepository } from './repository.js';
+import { ProfileService } from './service.js';
 
 @Module({
     imports: [
@@ -10,7 +12,11 @@ import { ProfileResolver } from './profile.resolver.js';
             autoSchemaFile: true,
         }),
     ],
-    providers: [ProfileResolver]
+    providers: [
+        ProfileResolver,
+        ProfileRepository,
+        ProfileService
+    ]
 })
 
 export class ProfileModule {}

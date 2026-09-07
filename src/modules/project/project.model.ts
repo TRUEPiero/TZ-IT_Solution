@@ -6,7 +6,7 @@ export class Project {
     id: number;
 
     @Field()
-    titile: string;
+    title: string;
 
     @Field()
     link: string;
