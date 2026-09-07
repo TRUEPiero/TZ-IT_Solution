@@ -1,0 +1,41 @@
+services:
+  app:
+    container_name: profile
+    build:
+      context: .
+      dockerfile: ./docker/development.dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL:?lost DATABASE_URL variable}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+    networks:
+      - local
+      - web
+
+  postgres:
+    image: postgres:15
+    container_name: profile_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?lost POSTGRES_USER variable}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?lost POSTGRES_PASSWORD variable}
+      POSTGRES_DB: ${POSTGRES_DB:?lost POSTGRES_DB variable}
+    ports:
+      - "5432:5432"
+    volumes:
+      - profile_postgres_data:/var/lib/postgresql/data
+    networks:
+      - local
+
+networks:
+  web:
+    driver: bridge
+  local:
+    driver: bridge
+
+volumes:
+  profile_postgres_data:
