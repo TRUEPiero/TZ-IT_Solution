@@ -1,101 +1,122 @@
-import db from '../../../lib/prisma.js';
+import fs from "fs";
+import db from "../../../lib/prisma.js";
 
-async function main() {
+type SeedData = {
+  profile: {
+    name: string;
+    description: string;
+    links: string[];
+    achievements: string[];
+  };
+
+  skills: {
+    title: string;
+    level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "EXPERT";
+  }[];
+
+  companies: {
+    title: string;
+  }[];
+
+  projects: {
+    title: string;
+    link: string;
+    technologies: string[];
+  }[];
+
+  experience: {
+    position: string;
+    responsibilities: string;
+    startDate: string;
+    endDate: string | null;
+    company: string;
+  }[];
+};
+
+async function readFile() {
+  const file = fs.readFileSync(new URL("./json/profile.json", import.meta.url), 'utf-8');
+  const data: SeedData = JSON.parse(file);
+
+  return data;
+}
+
+async function writeToDB(data: SeedData) {
   const profile = await db.profile.create({
     data: {
-      name: 'Vladislav',
-      description: 'Fullstack Web Developer',
-      links: [
-        'https://github.com/TRUEPiero/',
-      ],
-      achievements: [
-        'Developed web applications',
-      ]
-    }
+      name: data.profile.name,
+      description: data.profile.description,
+      links: data.profile.links,
+      achievements: data.profile.achievements,
+    },
   });
 
-  const typescript = await db.skill.create({
-    data: {
-      title: 'TypeScript'
-    }
-  });
+  const skills = await Promise.all(
+    data.skills.map(skill =>
+      db.skill.create({
+        data: {
+          title: skill.title,
+        },
+      })
+    )
+  );
 
-  const javascript = await db.skill.create({
-    data: {
-      title: 'JavaScript'
-    }
-  });
+  const companies = await Promise.all(
+    data.companies.map(company =>
+      db.company.create({
+        data: {
+          title: company.title,
+        },
+      })
+    )
+  );
 
-  const nestjs = await db.skill.create({
-    data: {
-      title: 'NestJS'
-    }
-  });
-
-  const prisma = await db.skill.create({
-    data: {
-      title: 'Prisma'
-    }
-  });
-
-  const company = await db.company.create({
-    data: {
-      title: 'iRidi'
-    }
-  });
-
-  await db.project.create({
-    data: {
-      title: 'Holder',
-      link: 'https://github.com/TRUEPiero/holder-backend',
-      technologies: [
-        'TypeScript',
-        'Elysia',
-        'Prisma',
-        'PostgreSQL',
-        'Docker',
-        'Redis',
-        'grammyJS'        
-      ],
-      profileId: profile.id
-    }
-  });
-
-  await db.experience.create({
-    data: {
-      position: 'Web Developer',
-      responsibilities: 'Development and maintenance of web applications',
-      startDate: new Date('2024-01-01'),
-      endDate: null,
+  await db.project.createMany({
+    data: data.projects.map(project => ({
+      title: project.title,
+      link: project.link,
+      technologies: project.technologies,
       profileId: profile.id,
-      companyId: company.id
-    }
+    })),
+  });
+
+  await db.experience.createMany({
+    data: data.experience.map(experience => {
+      const company = companies.find(
+        company => company.title === experience.company
+      );
+
+      if (!company) {
+        throw new Error(
+          `Company "${experience.company}" not found`
+        );
+      }
+
+      return {
+        position: experience.position,
+        responsibilities: experience.responsibilities,
+        startDate: new Date(experience.startDate),
+        endDate: experience.endDate
+          ? new Date(experience.endDate)
+          : null,
+        profileId: profile.id,
+        companyId: company.id,
+      };
+    }),
   });
 
   await db.profileSkill.createMany({
-    data: [
-      {
-        profileId: profile.id,
-        skillId: typescript.id,
-        level: 'EXPERT'
-      },
-      {
-        profileId: profile.id,
-        skillId: javascript.id,
-        level: 'ADVANCED'
-      },
-      {
-        profileId: profile.id,
-        skillId: nestjs.id,
-        level: 'INTERMEDIATE'
-      },
-      {
-        profileId: profile.id,
-        skillId: prisma.id,
-        level: 'ADVANCED'
-      }
-    ]
+    data: data.skills.map((skill, index) => ({
+      profileId: profile.id,
+      skillId: skills[index].id,
+      level: skill.level,
+    })),
   });
+}
+
+async function main() {
+  const data = await readFile();
+
+  await writeToDB(data);
 }
 
 main()

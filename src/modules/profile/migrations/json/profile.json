@@ -1,0 +1,59 @@
+{
+  "profile": {
+    "name": "Vladislav",
+    "description": "Fullstack Web Developer",
+    "links": [
+      "https://github.com/TRUEPiero/"
+    ],
+    "achievements": [
+      "Developed web applications"
+    ]
+  },
+  "skills": [
+    {
+      "title": "TypeScript",
+      "level": "EXPERT"
+    },
+    {
+      "title": "JavaScript",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "NestJS",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "Prisma",
+      "level": "ADVANCED"
+    }
+  ],
+  "companies": [
+    {
+      "title": "iRidi"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Holder",
+      "link": "https://github.com/TRUEPiero/holder-backend",
+      "technologies": [
+        "TypeScript",
+        "Elysia",
+        "Prisma",
+        "PostgreSQL",
+        "Docker",
+        "Redis",
+        "grammyJS"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "position": "Web Developer",
+      "responsibilities": "Development and maintenance of web applications",
+      "startDate": "2024-01-01",
+      "endDate": null,
+      "company": "iRidi"
+    }
+  ]
+}
