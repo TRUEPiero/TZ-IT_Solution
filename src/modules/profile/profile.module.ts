@@ -11,6 +11,9 @@ import { ProfileService } from './service.js';
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
             autoSchemaFile: true,
+            csrfPrevention: false,
+            graphiql: true,
+            introspection: true,
         }),
     ],
     providers: [
