@@ -18,11 +18,11 @@ export class Profile {
     @Field()
     description: string;
 
-    @Field(() => [String])
-    links: string[];
+    @Field(() => String)
+    links: string;
 
-    @Field(() => [String])
-    achievements: string[];
+    @Field(() => String)
+    achievements: string;
 
     @Field(type => [Skill])
     skills: Skill[];

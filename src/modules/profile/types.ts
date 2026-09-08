@@ -6,8 +6,8 @@ type EntityParams = {
     id: number;
     name: string;
     description: string;
-    links: string[];
-    achievements: string[];
+    links: string;
+    achievements: string;
     skills: ProfileSkill[];
     experience: ProfileExperience[];
     projects: ProfileProject[];
