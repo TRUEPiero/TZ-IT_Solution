@@ -45,8 +45,8 @@ async function writeToDB(data: SeedData) {
     data: {
       name: data.profile.name,
       description: data.profile.description,
-      links: data.profile.links.join('/'),
-      achievements: data.profile.achievements.join('/'),
+      links: data.profile.links.join('\\n'),
+      achievements: data.profile.achievements.join('\\n'),
     },
   });
 
@@ -74,7 +74,7 @@ async function writeToDB(data: SeedData) {
     data: data.projects.map(project => ({
       title: project.title,
       link: project.link,
-      technologies: project.technologies.join('/'),
+      technologies: project.technologies.join('\\n'),
       profileId: profile.id,
     })),
   });

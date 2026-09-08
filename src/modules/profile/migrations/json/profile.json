@@ -16,7 +16,7 @@
     },
     {
       "title": "JavaScript",
-      "level": "ADVANCED"
+      "level": "EXPERT"
     },
     {
       "title": "NestJS",
@@ -25,11 +25,99 @@
     {
       "title": "Prisma",
       "level": "ADVANCED"
+    },
+    {
+      "title": "PHP",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "SQL",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "Laravel",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "VueJS",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "Nuxt",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "React",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "1C-Bitrix/Bitrix24",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "Elysia",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "Git",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "REST API",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "GraphQL",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "WebSocket",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "Docker/Docker Compose",
+      "level": "ADVANCED"
+    },
+    {
+      "title": "Puppeteer",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "Neo4j",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "Jest",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "Playwright",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "grammy",
+      "level": "INTERMEDIATE"
+    },
+    {
+      "title": "1C",
+      "level": "BEGINNER"
     }
   ],
   "companies": [
     {
-      "title": "iRidi"
+      "title": "ООО «Бонго»"
+    },
+    {
+      "title": "ООО «Бизнес-Аналитика»"
+    },
+    {
+      "title": "ООО «Субконто-Урал»"
+    },
+    {
+      "title": "ООО «Смайл»"
+    },
+    {
+      "title": "ООО «АБ»"
     }
   ],
   "projects": [
@@ -49,11 +137,39 @@
   ],
   "experience": [
     {
-      "position": "Web Developer",
-      "responsibilities": "Development and maintenance of web applications",
-      "startDate": "2024-01-01",
+      "position": "Веб-программист",
+      "responsibilities": "Сопровождение сайта на Bitrix, доработка компонентов и модулей. Участие в разработке SPA веб-приложения на Nuxt/Vue и Elysia + Prisma. Работа с Puppeteer, Pinia, Neo4j, Docker, GitLab, Jest и Playwright. Разработка Telegram-ботов на grammy, включая регистрацию пользователей, cron-рассылки и интеграции с Google Sheets и amoCRM. Разработка сайта-википедии на Docusaurus, верстка и доработка React-компонентов. Написание парсера MediaWiki в Markdown.",
+      "startDate": "2025-05-01",
       "endDate": null,
-      "company": "iRidi"
+      "company": "ООО «Бонго»"
+    },
+    {
+      "position": "Junior разработчик интеграций",
+      "responsibilities": "Подключение и настройка интеграций продуктов Roistat с сайтами, CRM-системами, сторонними виджетами, сервисами коллтрекинга и мессенджерами. Консультация клиентов по подключению и настройке интеграций. Написание кода для реализации сложной логики клиентов и тестирование реализованного функционала.",
+      "startDate": "2025-03-01",
+      "endDate": "2025-05-01",
+      "company": "ООО «Бизнес-Аналитика»"
+    },
+    {
+      "position": "Веб-программист",
+      "responsibilities": "Разработка и сопровождение интернет-магазинов, блогов и информационных сайтов на 1С-Битрикс. Написание компонентов и модулей для сложной логики сайта, интеграция с Yandex Cloud API, разработка модуля опросников и создания заказов, интеграция со сквозной аналитикой, службами доставки, платежными сервисами и сторонними CRM. Настройка и сопровождение корпоративных порталов на Битрикс24, реализация бизнес-процессов и интеграций. SEO-оптимизация сайтов. Работа с legacy-кодом.",
+      "startDate": "2024-08-01",
+      "endDate": "2025-03-01",
+      "company": "ООО «Субконто-Урал»"
+    },
+    {
+      "position": "Программист-разработчик",
+      "responsibilities": "Доработка и сопровождение информационной базы на платформе 1С УНФ для сервиса доставки еды. Разработка интеграции с мини-приложением VK.",
+      "startDate": "2023-05-01",
+      "endDate": "2023-10-01",
+      "company": "ООО «Смайл»"
+    },
+    {
+      "position": "Программист 1C",
+      "responsibilities": "Доработка и сопровождение информационной базы на платформе 1С УНФ для сети магазинов автозапчастей и СТО. Разработка интеграции с Telegram API для учета рабочего времени сотрудников.",
+      "startDate": "2022-12-01",
+      "endDate": "2023-05-01",
+      "company": "ООО «АБ»"
     }
   ]
 }

@@ -10,4 +10,7 @@ export class Project {
 
     @Field()
     link: string;
+
+    @Field(() => [String])
+    technologies: string[];
 }

@@ -11,6 +11,9 @@ export class Experience {
     @Field()
     position: string;
 
+    @Field()
+    responsibilities: string;
+
     @Field(() => GraphQLISODateTime)
     startDate: Date;
 
